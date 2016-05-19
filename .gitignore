@@ -25,6 +25,7 @@ build/Release
 
 # Compiled client assets
 public/assets
+public/index.html
 
 # Dependency directory
 node_modules
