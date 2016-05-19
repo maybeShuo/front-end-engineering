@@ -7,7 +7,8 @@ const uglify = require("gulp-uglify");
 
 
 const SRC_PATH = "./src";
-const DEST_PATH = "./public/assets";
+const DEST_PATH = "./public";
+const ASSETS_PATH = `${DEST_PATH}/assets`;
 
 gulp.task("default", [ "build" ]);
 
@@ -30,7 +31,7 @@ gulp.task("build-js", () => {
                    presets : [ "es2015" ]
                }))
                .pipe(uglify())
-               .pipe(gulp.dest(DEST_PATH));
+               .pipe(gulp.dest(ASSETS_PATH));
 });
 
 gulp.task("build-vender", () => {
@@ -39,5 +40,5 @@ gulp.task("build-vender", () => {
         "./node_modules/jquery.transit/jquery.transit.js"
               ]).pipe(uglify())
                .pipe(concat("vendor.js"))
-               .pipe(gulp.dest(DEST_PATH));
+               .pipe(gulp.dest(ASSETS_PATH));
 });
