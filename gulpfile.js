@@ -1,6 +1,8 @@
 const babel = require("gulp-babel");
 const concat = require("gulp-concat");
 const gulp = require("gulp");
+const hash = require("gulp-hash");
+const revReplace = require("gulp-rev-replace");
 const rimraf = require("gulp-rimraf");
 const runSequence = require("run-sequence");
 const uglify = require("gulp-uglify");
@@ -19,7 +21,9 @@ gulp.task("clean", () => {
 
 gulp.task("build", [ "clean" ], (cb) => {
     runSequence(
-        [ "build-vender", "build-js" ],
+        "build-vender",
+        "build-js" ,
+        "build-html",
         cb
     );
 });
@@ -31,6 +35,9 @@ gulp.task("build-js", () => {
                    presets : [ "es2015" ]
                }))
                .pipe(uglify())
+               .pipe(hash())
+               .pipe(gulp.dest(ASSETS_PATH))
+               .pipe(hash.manifest("manifest.json",true))
                .pipe(gulp.dest(ASSETS_PATH));
 });
 
@@ -40,5 +47,15 @@ gulp.task("build-vender", () => {
         "./node_modules/jquery.transit/jquery.transit.js"
               ]).pipe(uglify())
                .pipe(concat("vendor.js"))
+               .pipe(hash())
+               .pipe(gulp.dest(ASSETS_PATH))
+               .pipe(hash.manifest("manifest.json",true))
                .pipe(gulp.dest(ASSETS_PATH));
+});
+
+gulp.task("build-html", () => {
+    const manifest = gulp.src(`${ASSETS_PATH}/manifest.json`);
+    return gulp.src(`${SRC_PATH}/index.html`)
+               .pipe(revReplace({manifest: manifest}))
+               .pipe(gulp.dest(DEST_PATH));
 });
