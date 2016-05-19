@@ -6,7 +6,7 @@ app.use(express.static("./public"));
 
 
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080 ;
 app.listen(port, () => {
     console.log(`The server is now running at port ${port}...`);
 });
