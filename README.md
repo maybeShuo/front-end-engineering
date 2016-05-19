@@ -1,2 +1,2 @@
 # front-end-engineering
-An example of a simple website 
+An example of a simple website

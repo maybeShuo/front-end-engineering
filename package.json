@@ -1,0 +1,38 @@
+{
+  "name": "front-end-engineering",
+  "version": "1.0.0",
+  "description": "An example of a simple website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maybeShuo/front-end-engineering.git"
+  },
+  "keywords": [
+    "front-end",
+    "gulp",
+    "babel",
+    "less"
+  ],
+  "author": "Chen Shuo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maybeShuo/front-end-engineering/issues"
+  },
+  "homepage": "https://github.com/maybeShuo/front-end-engineering#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-less": "^3.1.0",
+    "gulp-rimraf": "^0.2.0",
+    "run-sequence": "^1.2.0"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
